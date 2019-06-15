@@ -1,0 +1,13 @@
+server:
+  port: 80
+
+shutdown:
+  waitTime: 6000  #单位毫秒
+  maxWaitTime: 24000  #单位毫秒
+redis:
+  channel: redis-test
+  master-name: mymaster
+  redis-cluster: true
+  redis-password: redispassword
+  redis-host: 101.200.155.33:26000,101.200.155.33:26001,101.200.155.33:26002
+#  redis-host: 101.200.155.33:6379
