@@ -11,7 +11,7 @@ import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
-import redis.RedisTestApplication;
+import redis.App;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
@@ -40,6 +40,7 @@ public class GracefulShutdownTomcat implements TomcatConnectorCustomizer, Applic
 
     @Override
     public void onApplicationEvent(ContextClosedEvent event) {
+        logger.info(event.getClass().getSimpleName()+" 事件已发生！");
         if (this.connector == null) {
             logger.info("Tomcat connector has'nt been ready!");
         }
@@ -74,7 +75,7 @@ public class GracefulShutdownTomcat implements TomcatConnectorCustomizer, Applic
         } catch (Exception e) {
             logger.error("Tomcat shutdown error!",e);
         }finally {
-            SpringApplication.run(RedisTestApplication.class, "");
+            SpringApplication.run(App.class, "");
         }
     }
 
